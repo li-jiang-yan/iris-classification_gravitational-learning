@@ -23,3 +23,5 @@ for i in range(len(X_test)):
     r1 = X_test[i]
     r12 = np.sum((X_train - r1) ** 2, axis=1)
     v = m / r12
+    p = np.array([np.sum(np.where(y_train == target, v, 0)) for target in set(y_train)])
+    P = p / np.sum(p)
