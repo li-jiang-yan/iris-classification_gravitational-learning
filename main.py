@@ -2,6 +2,8 @@ from sklearn import datasets
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 import numpy as np
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
 
 # Load dataset
 iris = datasets.load_iris()
@@ -28,3 +30,8 @@ for i in range(len(X_test)):
     p = np.array([np.sum(np.where(y_train == target, v, 0)) for target in set(y_train)])
     P = p / np.sum(p)
     y_pred.append(np.argmax(P))
+
+# Compute the confusion matrix
+disp = ConfusionMatrixDisplay(confusion_matrix=confusion_matrix(y_test, y_pred), display_labels=iris.target_names)
+disp.plot()
+plt.show()
