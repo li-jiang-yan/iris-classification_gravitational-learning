@@ -14,6 +14,10 @@ X = StandardScaler().fit(X).transform(X)
 # Split data into train and test data
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
 
+# Compute the mass factor for the training data
+n = np.bincount(y_train)
+m = np.array([1/n[i] for i in y_train])
+
 # Compute the probability function and perform classification
 for i in range(len(X_test)):
     r1 = X_test[i]
