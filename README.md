@@ -36,6 +36,10 @@ We can model a probability function discounting [the second Kolmogorov axiom](ht
 
 $$p(X)=\sum_{\text{for all }i}\frac{m_{i}}{r_{X,i}}$$
 
-Applying the second axiom $P(\Omega)=1$, we can model the probability as
+To avoid the skewing of results towards classes with more points, the total mass for a particular class $m_{i}$ will be the same across all classes.
+
+$$m_{i}=\frac{1}{N}$$
+
+where $N$ is the total number of points for the class $i$ belongs to. Applying the second axiom $P(\Omega)=1$, we can model the probability as
 
 $$P(X)=\frac{1}{\sum_{\text{for all }x}p(X=x)}p(X)$$
