@@ -6,9 +6,9 @@ According to [Newton's Law of Universal Gravitation](https://en.wikipedia.org/wi
 
 $$F\propto\frac{m_{1}m_{2}}{r^{2}}$$
 
-This endeavor intends to apply the same to training and testing data points in a machine learning model. Since the mass (or in more machine learning and less physics-accurate terms, weight) of the testing point is not consequential to the classification of the testing point, we can take the mass of the testing point $m_{2} = 1$, and so the mass of the training point can be denoted as $m_{1} = m$
+This endeavor intends to apply the same to training and testing data points in a machine learning model. Since the mass (or in more machine learning and less physics-accurate terms, weight) of the testing point is not consequential to the classification of the testing data point, we can take the mass of the testing data point $m_{2} = 1$, and so the mass of the training point can be denoted as $m_{1} = m$
 
-It might actually be more computational more efficient and non-consequential to the final classification task if we drop the square and consider only the inverse of the distance between the sample points. This actually brings about another concept used in physics, and that is the gravitational potential $V(r)$. Another added benefit is that as gravitational potential is a scalar quantity, the individual gravitational potentials may be summed up more simply compared to gravitational force.
+It might actually be more computational more efficient and non-consequential to the final classification task if we drop the square and consider only the inverse of the distance between the sample data points. This actually brings about another concept used in physics, and that is the gravitational potential $V(r)$. Another added benefit is that as gravitational potential is a scalar quantity, the individual gravitational potentials may be summed up more simply compared to gravitational force.
 
 Gravitational field strength is related to the gravitational force by
 
@@ -20,7 +20,7 @@ $$g(r)=\frac{dV(r)}{dr}$$
 
 $$V(r)=\int g(r) dr=\int \frac{Gm}{r^{2}} dr = -\frac{Gm}{r}+C$$
 
-The gravitational potential is defined at zero when the masses are infinitely far apart from each other. This is useful as in the case of machine learning, if the training and testing points are infinitely far apart from each other, the probability that the test point belongs to the class of the training point is zero (which is an extreme case).
+The gravitational potential is defined at zero when the masses are infinitely far apart from each other. This is useful as in the case of machine learning, if the training and testing data points are infinitely far apart from each other, the probability that the test point belongs to the class of the training point is zero (which is an extreme case).
 
 $$\lim_{r\rightarrow\infty}V(r):=0$$
 
@@ -32,14 +32,22 @@ $$C=0$$
 
 $$V(r)=-\frac{Gm}{r}\propto\frac{m}{r}$$
 
-We can model a probability function discounting [the second Kolmogorov axiom](https://en.wikipedia.org/wiki/Probability_axioms#Second_axiom):
+Let the variable $v(r)$, proportional to the gravitational potential $V(r)$ be defined as
 
-$$p(X)=\sum_{\text{for all }i}\frac{m_{i}}{r_{X,i}}$$
+$$v(r)=\frac{m}{r}$$
 
-To avoid the skewing of results towards classes with more points, the total mass for a particular class $m_{i}$ will be the same across all classes.
+The variable $v(r)$ is concerned with the gravitational potential between two points, namely the testing point and one of the training point. In the Python code, the variable $r_{12}$ is used to denote the Euclidean distance between the training data point with position $\vec{r}_{1}$ and the test data point.
 
-$$m_{i}=\frac{1}{N}$$
+$$v=\frac{m}{r_{12}}$$
 
-where $N$ is the total number of points for the class $i$ belongs to. Applying the second axiom $P(\Omega)=1$, we can model the probability as
+We can model a function of the probability that a data point belongs to a certain class, $\text{target}$ discounting [the second Kolmogorov axiom](https://en.wikipedia.org/wiki/Probability_axioms#Second_axiom):
 
-$$P(X)=\frac{1}{\sum_{\text{for all }x}p(X=x)}p(X)$$
+$$p(\text{target})=\sum_{\text{for target}}v$$
+
+To avoid the skewing of results towards classes with more points, the total mass for a particular class $m$ will be the same across all classes.
+
+$$m=\frac{1}{n}$$
+
+where $n$ is the total number of training sample data points for the class. Applying the second axiom $P(\Omega)=1$, we can model the probability as
+
+$$P(\text{target})=\frac{1}{\sum_{\text{for all targets}}p(\text{target})}p(\text{target})$$
