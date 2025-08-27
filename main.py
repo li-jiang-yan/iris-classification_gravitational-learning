@@ -19,9 +19,12 @@ n = np.bincount(y_train)
 m = np.array([1/n[i] for i in y_train])
 
 # Compute the probability function and perform classification
+y_pred = []
+
 for i in range(len(X_test)):
     r1 = X_test[i]
     r12 = np.sum((X_train - r1) ** 2, axis=1)
     v = m / r12
     p = np.array([np.sum(np.where(y_train == target, v, 0)) for target in set(y_train)])
     P = p / np.sum(p)
+    y_pred.append(np.argmax(P))
