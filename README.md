@@ -1,4 +1,4 @@
-# iris-ml-gravitation-solver
+# Gravitational Learning Algorithm for Iris Classification
 This endeavors to use the concepts of classical Newtonian gravitation to classify samples from the Iris machine learning dataset. This aims to be more of an educational endeavor rather than a practical one. When we look at machine learning packages e.g. sklearn, they may be able to solve the problems quicker, but it is generally not easy to see what goes behind the scenes. This endeavor does not optimize for speed, but it aims to show what goes behind the scenes in this self-proposed machine learning classification technique.
 
 # Foundation
